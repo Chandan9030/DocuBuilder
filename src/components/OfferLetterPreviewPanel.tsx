@@ -2,7 +2,8 @@ import React, { useRef, useState } from 'react';
 import { Download, Loader, Save, FileSpreadsheet, Mail, X } from 'lucide-react';
 import { generatePDF } from '../utils/pdf';
 import OfferLetterTemplate from './templates/OfferLetterTemplate';
-import ExcelBulkGenerator, { sendSingleDocumentByEmail } from './ExcelBulkGenerator';
+import ExcelBulkGenerator from './ExcelBulkGenerator';
+import { sendDocumentsByEmail, sendSingleDocumentByEmail } from './emailUtils.tsx';
 
 interface OfferLetterPreviewPanelProps {
     formData: any;

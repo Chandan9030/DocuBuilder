@@ -1,7 +1,11 @@
 import React from 'react';
 import { FileText } from 'lucide-react';
 
-const Header = ({ currentView, onViewChange }) => {
+const Header = ({ currentView, onViewChange, Logout }) => {
+    const handleLogout = () => {
+    localStorage.removeItem("loggedIn")
+    window.location.reload()
+  }
   return (
     <header className="bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,6 +40,12 @@ const Header = ({ currentView, onViewChange }) => {
             <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
               Help
             </a>
+            <button
+              onClick={handleLogout}
+              className="text-red-500 hover:text-red-600 transition-colors duration-200 font-medium"
+            >
+              Logout
+            </button>
           </nav>
         </div>
       </div>

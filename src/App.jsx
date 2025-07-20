@@ -5,14 +5,16 @@ import Header from "./components/Header"
 import TemplateSelector from "./components/TemplateSelector"
 import FormPanel from "./components/FormPanel"
 import PreviewPanel from "./components/PreviewPanel"
-import OfferLetterPreviewPanel from "./components/OfferLetterPreviewPanel" // Add this import
+import OfferLetterPreviewPanel from "./components/OfferLetterPreviewPanel"
 import SavedDocuments from "./components/SavedDocuments"
 import SavedDocumentModal from "./components/SavedDocumentModal"
 import ExcelBulkGenerator from "./components/ExcelBulkGenerator"
 import { templateTypes, initialFormData } from "./constants/templates"
 import { saveToLocalStorage, getFromLocalStorage } from "./utils/storage"
+import LoginForm from "./components/LoginForm"
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
   const [selectedTemplate, setSelectedTemplate] = useState("internshipLetter")
   const [formData, setFormData] = useState(initialFormData)
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
@@ -21,6 +23,17 @@ function App() {
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
   const [editingDocument, setEditingDocument] = useState(null)
   const [isSaving, setIsSaving] = useState(false)
+
+  // Check login status from localStorage on mount
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true"
+    setLoggedIn(isLoggedIn)
+  }, [])
+
+  const handleLoginSuccess = () => {
+    setLoggedIn(true)
+    localStorage.setItem("loggedIn", "true")
+  }
 
   // Load saved form data from localStorage on initial load
   useEffect(() => {
@@ -145,7 +158,7 @@ function App() {
         />
       )
     }
-    
+
     return (
       <PreviewPanel
         templateType={selectedTemplate}
@@ -160,55 +173,61 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header
-        currentView={showSavedDocuments ? "saved" : "templates"}
-        onViewChange={(view) => {
-          if (view === "saved") {
-            setShowSavedDocuments(true)
-          } else {
-            setShowSavedDocuments(false)
-          }
-        }}
-        darkMode={false}
-        toggleDarkMode={() => {}}
-      />
-      <main className="flex-grow flex flex-col">
-        {!showSavedDocuments ? (
-          <>
-            <TemplateSelector
-              templates={templateTypes}
-              selectedTemplate={selectedTemplate}
-              onSelectTemplate={handleTemplateChange}
-            />
-
-            <div className="flex flex-col md:flex-row flex-grow px-4 py-6 gap-6">
-              <FormPanel 
-                templateType={selectedTemplate} 
-                formData={formData} 
-                onFormChange={handleFormChange} 
-              />
-
-              {renderPreviewPanel()}
-            </div>
-          </>
-        ) : (
-          <SavedDocuments 
-            onEditDocument={handleEditDocument} 
-            onBackToTemplates={() => setShowSavedDocuments(false)} 
+    <>
+      {!loggedIn ? (
+        <LoginForm onLoginSuccess={handleLoginSuccess} />
+      ) : (
+        <div className="flex flex-col min-h-screen bg-gray-50">
+          <Header
+            currentView={showSavedDocuments ? "saved" : "templates"}
+            onViewChange={(view) => {
+              if (view === "saved") {
+                setShowSavedDocuments(true)
+              } else {
+                setShowSavedDocuments(false)
+              }
+            }}
+            darkMode={false}
+            toggleDarkMode={() => {}}
           />
-        )}
-      </main>
+          <main className="flex-grow flex flex-col">
+            {!showSavedDocuments ? (
+              <>
+                <TemplateSelector
+                  templates={templateTypes}
+                  selectedTemplate={selectedTemplate}
+                  onSelectTemplate={handleTemplateChange}
+                />
 
-      <SavedDocumentModal
-        isOpen={isSaveModalOpen}
-        onClose={() => setIsSaveModalOpen(false)}
-        onSave={handleSaveDocument}
-        defaultTitle={editingDocument?.title || ""}
-        isEditing={!!editingDocument}
-        isSaving={isSaving}
-      />
-    </div>
+                <div className="flex flex-col md:flex-row flex-grow px-4 py-6 gap-6">
+                  <FormPanel 
+                    templateType={selectedTemplate} 
+                    formData={formData} 
+                    onFormChange={handleFormChange} 
+                  />
+
+                  {renderPreviewPanel()}
+                </div>
+              </>
+            ) : (
+              <SavedDocuments 
+                onEditDocument={handleEditDocument} 
+                onBackToTemplates={() => setShowSavedDocuments(false)} 
+              />
+            )}
+          </main>
+
+          <SavedDocumentModal
+            isOpen={isSaveModalOpen}
+            onClose={() => setIsSaveModalOpen(false)}
+            onSave={handleSaveDocument}
+            defaultTitle={editingDocument?.title || ""}
+            isEditing={!!editingDocument}
+            isSaving={isSaving}
+          />
+        </div>
+      )}
+    </>
   )
 }
 

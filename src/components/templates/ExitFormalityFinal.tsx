@@ -40,7 +40,7 @@ const ExitFormalityFinal = ({ formData, templateContent }) => {
         <img
           src={headerImage}
           alt="Company Logo"
-          className="mx-auto h-32 mb-4 max-w-full object-contain"
+          className="mx-auto h-30 mb-4 max-w-full object-contain"
           onError={(e) => {
             console.error('Header image failed to load:', headerImage);
             e.currentTarget.style.display = 'none';
@@ -64,7 +64,7 @@ const ExitFormalityFinal = ({ formData, templateContent }) => {
         <img
           src={footerImage}
           alt="Footer Image"
-          className="mx-auto h-32 mb-4 max-w-full object-contain"
+          className="mx-auto h-20 mb-4 max-w-full object-contain"
           onError={(e) => {
             console.error('Footer image failed to load:', footerImage);
             e.currentTarget.style.display = 'none';
@@ -75,7 +75,7 @@ const ExitFormalityFinal = ({ formData, templateContent }) => {
           }}
         />
       ) : (
-        <div className="mx-auto h-24 mb-4 flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">
+        <div className="mx-auto h-20 mb-4 flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">
           Footer Image
         </div>
       )}

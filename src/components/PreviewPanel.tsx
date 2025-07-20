@@ -4,7 +4,8 @@ import { generatePDF } from '../utils/pdf';
 import InternshipLetterTemplate from './templates/InternshipLetterTemplate';
 import CertificateTemplate from './templates/CertificateTemplate';
 import ExperienceCertificateTemplate from './templates/ExperienceLetter';
-import ExcelBulkGenerator, { sendSingleDocumentByEmail } from './ExcelBulkGenerator';
+import ExcelBulkGenerator from './ExcelBulkGenerator';
+import { sendDocumentsByEmail, sendSingleDocumentByEmail } from './emailUtils.tsx';
 import RelievingLetterTemplate from './templates/RelievingLetterTemplate';
 import ExitFormalityFinal from './templates/ExitFormalityFinal';
 import HikeLetterTemplate from './templates/HikeLetterTemplate';
@@ -220,7 +221,7 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({
                 box-sizing: border-box;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 margin: 0 auto 20px;
-                font-size: 12pt;
+                font-size: 6.8pt;
                 line-height: 1.4;
                 font-family: "Times New Roman", serif;
                 color: #000000;
