@@ -87,11 +87,11 @@ function LoginForm({ onLoginSuccess }) {
           </button>
         </div>
         
-        <div className="px-6 py-4 bg-gray-50 text-center border-t border-gray-100">
+        {/* <div className="px-6 py-4 bg-gray-50 text-center border-t border-gray-100">
           <p className="text-gray-500 text-sm">
             Forgot your password? <a href="#" className="text-blue-600 hover:underline font-medium">Reset here</a>
           </p>
-        </div>
+        </div> */}
       </form>
     </div>
   );

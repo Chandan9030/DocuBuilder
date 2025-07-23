@@ -24,7 +24,7 @@ type SalarySlipFormData = {
   deductionAllowance?: string;
   netSalaryInWords?: string;
   headerImage?: string;
-  startDate?: string; // Added to support startDate from templates.ts
+  startDate?: string;
 };
 
 interface SalarySlipTemplateProps {
@@ -54,7 +54,7 @@ const defaultFormData: Required<SalarySlipFormData> = {
   deductionAllowance: '0',
   netSalaryInWords: 'Twenty-Seven Thousand Only/-',
   headerImage: 'https://res.cloudinary.com/dcpoiyzqi/image/upload/v1749209085/uploads/1749209084379-1563b3f81f4be9fbc787eb359ff0f470.jpg',
-  startDate: '2nd May, 2022' // Default value for startDate
+  startDate: '2nd May, 2022'
 };
 
 const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} as SalarySlipFormData, templateContent }) => {
@@ -78,7 +78,6 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
     employeeEsi = defaultFormData.employeeEsi,
     professionalTax = defaultFormData.professionalTax,
     deductionAllowance = defaultFormData.deductionAllowance,
-    netSalaryInWords = defaultFormData.netSalaryInWords,
     headerImage = defaultFormData.headerImage
   } = formData;
 
@@ -109,34 +108,51 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
     
     let result = '';
     
+    // Handle lakhs
     if (num >= 100000) {
-      result += ones[Math.floor(num / 100000)] + ' Lakh ';
+      const lakhs = Math.floor(num / 100000);
+      if (lakhs >= 20) {
+        result += tens[Math.floor(lakhs / 10)] + ' ' + ones[lakhs % 10] + ' Lakh ';
+      } else if (lakhs >= 10) {
+        result += teens[lakhs - 10] + ' Lakh ';
+      } else {
+        result += ones[lakhs] + ' Lakh ';
+      }
       num %= 100000;
     }
+    
+    // Handle thousands
     if (num >= 1000) {
-      result += ones[Math.floor(num / 1000)] + ' Thousand ';
+      const thousands = Math.floor(num / 1000);
+      if (thousands >= 20) {
+        result += tens[Math.floor(thousands / 10)] + ' ' + ones[thousands % 10] + ' Thousand ';
+      } else if (thousands >= 10) {
+        result += teens[thousands - 10] + ' Thousand ';
+      } else {
+        result += ones[thousands] + ' Thousand ';
+      }
       num %= 1000;
     }
     
+    // Handle hundreds
     if (num >= 100) {
       result += ones[Math.floor(num / 100)] + ' Hundred ';
       num %= 100;
     }
     
+    // Handle tens and ones
     if (num >= 20) {
-      result += tens[Math.floor(num / 10)] + ' ';
-      num %= 10;
+      result += tens[Math.floor(num / 10)] + ' ' + ones[num % 10] + ' ';
     } else if (num >= 10) {
       result += teens[num - 10] + ' ';
-      num = 0;
-    }
-    
-    if (num > 0) {
+    } else if (num > 0) {
       result += ones[num] + ' ';
     }
     
-    return result.trim();
+    return result.trim() + ' Only/-';
   };
+
+  const netSalaryInWords = numberToWords(netSalary);
 
   const HeaderSection = () => (
     <div className="text-center mb-6">
@@ -288,8 +304,6 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
           </div>
         </div>
       </div>
-
-      {/* <FooterSection /> */}
     </div>
   );
 };
