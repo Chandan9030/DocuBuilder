@@ -913,6 +913,7 @@ const ExcelBulkGenerator: React.FC<ExcelBulkGeneratorProps> = ({ onClose, templa
           const customTemplate = findFieldValue(row, ['customTemplate', 'Custom Template', 'Template Content']);
           // Fields for PaymentReceiptTemplate
           const studentName = findFieldValue(row, ['studentName', 'Student Name']);
+          const receiptNo = findFieldValue(row, ['Receipt Number', 'receiptNo']);
           const registrationNo = findFieldValue(row, ['registrationNo', 'Registration No', 'Registration Number']);
           const courseName = findFieldValue(row, ['courseName', 'Course Name']);
           const contact = findFieldValue(row, ['contact', 'Contact']);
@@ -1018,6 +1019,7 @@ const ExcelBulkGenerator: React.FC<ExcelBulkGeneratorProps> = ({ onClose, templa
             customTemplate: customTemplate ? DOMPurify.sanitize(customTemplate) : '',
             // PaymentReceiptTemplate fields
             studentName: studentName || `Student ${index + 1}`,
+            receiptNo: receiptNo || 'N/A',
             registrationNo: registrationNo || 'N/A',
             courseName: courseName || 'N/A',
             contact: contact || 'N/A',
@@ -1229,7 +1231,7 @@ const ExcelBulkGenerator: React.FC<ExcelBulkGeneratorProps> = ({ onClose, templa
                     <li><strong>Hike Letter:</strong> Title, recipientName, Email, Employee ID, Monthly Gross Compensation, Annual CTC, Date, Job Title, customTemplate</li>
                     <li><strong>Relieving Letter:</strong> Title, recipientName, Email, Relieving Date, Reference Date, customTemplate</li>
                     <li><strong>Salary Slip:</strong> Title, Employee name, email, date of joining, location, Payment mode, month & year, calendar days, paid days, loss of pay (LOP), Account Number, Bonus, Employee PF, Employee ESI, Professional Tax, Total Earnings, Total Deduction, Net Salary, Net Salary in Words, Employee ID, Job Title, customTemplate</li>
-                    <li><strong>Payment Receipt:</strong> studentName, registrationNo, courseName, contact, address, duration, courseFees, totalAmountPaid, paymentMethod, upiId, authorizedBy, companyPhone, customTemplate</li>
+                    <li><strong>Payment Receipt:</strong> studentName, receiptNo, registrationNo, courseName, contact, address, duration, courseFees, totalAmountPaid, paymentMethod, upiId, authorizedBy, companyPhone, customTemplate</li>
                   </ul>
                 </span>
               </label>
@@ -1342,7 +1344,7 @@ const ExcelBulkGenerator: React.FC<ExcelBulkGeneratorProps> = ({ onClose, templa
                         </td>
                         <td className="px-4 py-2 text-sm">{row.id}</td>
                         <td className="px-4 py-2 text-sm font-medium">
-                          {row.recipientTitle} {row.recipientName}
+                          {selectedTemplate === 'paymentReceipt' ? row.studentName : `${row.recipientTitle} ${row.recipientName}`}
                         </td>
                         <td className="px-4 py-2 text-sm">
                           {row.email ? (
@@ -1484,7 +1486,7 @@ const ExcelBulkGenerator: React.FC<ExcelBulkGeneratorProps> = ({ onClose, templa
               <div className="bg-white rounded-lg max-w-4xl max-h-[90vh] overflow-y-auto w-full">
                 <div className="p-4 border-b border-gray-200 flex justify-between items-center">
                   <h4 className="text-lg font-semibold">
-                    Preview: {excelData[previewIndex]?.recipientName}
+                    Preview: {selectedTemplate === 'paymentReceipt' ? excelData[previewIndex]?.studentName : excelData[previewIndex]?.recipientName}
                   </h4>
                   <button
                     onClick={() => setPreviewIndex(null)}

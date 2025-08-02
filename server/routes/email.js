@@ -28,6 +28,11 @@ router.post(
     console.log("Request body:", {
       recipientEmail: req.body.recipientEmail,
       recipientName: req.body.recipientName,
+      studentName: req.body.studentName,
+      studentRollNo: req.body.studentRollNo,
+      subject: req.body.subject,
+      pdfFilename: req.body.pdfFilename,
+      pdfBase64Length: req.body.pdfBase64?.length || 0,
       subject: req.body.subject,
       pdfFilename: req.body.pdfFilename,
       pdfBase64Length: req.body.pdfBase64?.length || 0,

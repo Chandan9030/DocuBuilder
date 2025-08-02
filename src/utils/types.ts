@@ -4,6 +4,7 @@ export interface FormData {
   recipientName: string;
   firstName: string;
   employeeName: string;
+  studentName: string;
   email: string;
   recipientAddress: string;
   issueDate: string;
