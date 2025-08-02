@@ -10,6 +10,7 @@ import RelievingLetterTemplate from './templates/RelievingLetterTemplate';
 import ExitFormalityFinal from './templates/ExitFormalityFinal';
 import HikeLetterTemplate from './templates/HikeLetterTemplate';
 import SalarySlipTemplate from './templates/SalarySlipTemplate';
+import PaymentReceiptTemplate from './templates/PaymentReceiptTemplate';
 
 interface PreviewPanelProps {
   templateType: string;
@@ -54,6 +55,8 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({
         return <HikeLetterTemplate formData={formData} />;
       case 'salarySlip':
         return <SalarySlipTemplate formData={formData} />;
+      case 'paymentReceipt':
+        return <PaymentReceiptTemplate formData={formData} />;  
 
       default:
         return <InternshipLetterTemplate formData={formData} />;
@@ -76,6 +79,8 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({
         return 'hike_letter';
       case 'salarySlip':
         return 'salary_Slip';
+      case 'paymentReceipt':
+        return 'payment_receipt';  
       default:
         return 'document';
     }

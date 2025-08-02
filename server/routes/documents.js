@@ -79,6 +79,7 @@ router.post(
     }
 
     const { title, templateType, formData } = req.body
+    console.log("req body",templateType);
 
     // Enhanced validation
     const validationErrors = []
@@ -87,8 +88,9 @@ router.post(
       validationErrors.push("Title is required and must be a non-empty string")
     }
 
-    if (!templateType || !["internshipLetter", "offerLetter", "certificate", "experienceCertificate","relievingLetter", "exitFormalityFinal", "hikeLetter", "salarySlip"].includes(templateType)) {
-      validationErrors.push("Valid template type is required (internshipLetter, offerLetter, certificate, experienceCertificate, relievingLetter, exitFormalityFinal, hikeLetter or salarySlip)")
+    if (!templateType || !["internshipLetter", "offerLetter", "certificate", "experienceCertificate","relievingLetter", "exitFormalityFinal", "hikeLetter", "salarySlip", "paymentReceipt"].includes(templateType)) {
+      console.log("❌ Invalid template type:", templateType)
+      validationErrors.push("Valid template type is required (internshipLetter, offerLetter, certificate, experienceCertificate, relievingLetter, exitFormalityFinal, hikeLetter, salarySlip or paymentReceipt)")
     }
 
     if (!formData || typeof formData !== "object" || Object.keys(formData).length === 0) {

@@ -11,9 +11,9 @@ const documentSchema = new mongoose.Schema(
     templateType: {
       type: String,
       required: [true, "Template type is required"],
-      enum: {
-        values: ["internshipLetter", "offerLetter", "certificate", "experienceCertificate","relievingLetter", "exitFormalityFinal", "hikeLetter", "salarySlip"],
-      },
+      // enum: {
+      //   values: ["internshipLetter", "offerLetter", "certificate", "experienceCertificate","relievingLetter", "exitFormalityFinal", "hikeLetter", "salarySlip", "paymentReceipt"],
+      // },
     },
     formData: {
       type: mongoose.Schema.Types.Mixed,

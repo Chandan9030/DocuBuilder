@@ -59,9 +59,7 @@
 //         <img
 //           src={headerImage}
 //           alt="Company Logo"
-//           className="mx-auto h-24 mb-4 max-w-full object-contain
-
-// "
+//           className="mx-auto h-24 mb-4 max-w-full object-contain"
 //           onError={(e) => {
 //             console.error('Header image failed to load:', headerImage);
 //             e.target.style.display = 'none';
@@ -106,7 +104,7 @@
 //       }} />
 
 //       {/* PAGE 1: Main Offer Letter */}
-//       <div className="bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
+//       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
 //         <HeaderSection />
 
 //         <div className="p-6">
@@ -162,7 +160,7 @@
 //       </div>
 
 //       {/* PAGE 2: Employment Agreement */}
-//       <div className="bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
+//       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
 //         <HeaderSection />
 
 //         <div className="p-8">
@@ -204,7 +202,7 @@
 //       </div>
 
 //       {/* PAGE 3: Leave Options and Attendance Process */}
-//       <div className="bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
+//       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
 //         <HeaderSection />
 
 //         <div className="p-10">
@@ -240,7 +238,7 @@
 //       </div>
 
 //       {/* PAGE 4: Gross Salary Sheet */}
-//       <div className="bg-white min-h-[900px] w-full border border-gray-300">
+//       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300">
 //         <HeaderSection />
 
 //         <div className="p-8">
@@ -350,6 +348,8 @@
 
 
 
+
+
 import React from 'react';
 import { formatDate, formatCurrency } from '../../utils/formatters';
 
@@ -359,7 +359,6 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
     companyAddress = 'B-19, Saheed Nagar, Bhubaneswar-751007, Odisha',
     recipientTitle = 'Mr.',
     recipientName = 'Agni Tanmaya Behera',
-    recipientAddress = 'Your Address',
     jobTitle = 'Full Stack Developer',
     department = 'Development',
     startDate = '02/05/2022',
@@ -465,7 +464,6 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
               <dt className="font-bold">Date:</dt>
               <dd>{formattedDate}</dd>
               <dt className="font-bold mt-2">{fullRecipientName}</dt>
-              <dd>{recipientAddress}</dd>
             </dl>
 
             <div className="mb-6">

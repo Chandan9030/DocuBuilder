@@ -8,8 +8,8 @@ const documentSchema = new mongoose.Schema({
   templateType: {
     type: String,
     required: true,
-    enum: ['internshipLetter', 'offerLetter', 'certificate', 'experienceCertificate',"relievingLetter", "exitFormalityFinal", "hikeLetter", "salarySlip"],
-    message: 'Template type must be internshipLetter, offerLetter, certificate, experienceCertificate,  relievingLetter, exitFormalityFinal, hikeLetter or salarySlip'
+    // enum: ['internshipLetter', 'offerLetter', 'certificate', 'experienceCertificate',"relievingLetter", "exitFormalityFinal", "hikeLetter", "salarySlip", "paymentReceipt"],
+    // message: 'Template type must be internshipLetter, offerLetter, certificate, experienceCertificate,  relievingLetter, exitFormalityFinal, hikeLetter, salarySlip or paymentReceipt'
   },
   formData: {
     type: Object,

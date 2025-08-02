@@ -27,7 +27,7 @@ const TemplateSelector = ({ templates, selectedTemplate, onSelectTemplate, onVie
           )}
         </div>
         
-        <div className="flex space-x-6 overflow-x-auto hide-scrollbar py-2">
+        <div className="flex space-x-1 overflow-x-auto hide-scrollbar py-2">
           {templates.map((template) => (
             <button
               key={template.id}

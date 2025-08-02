@@ -12,6 +12,7 @@ import ExitFormalityFinal from './templates/ExitFormalityFinal';
 import HikeLetterTemplate from './templates/HikeLetterTemplate';
 import RelievingLetterTemplate from './templates/RelievingLetterTemplate';
 import SalarySlipTemplate from './templates/SalarySlipTemplate';
+import PaymentReceiptTemplate from './templates/PaymentReceiptTemplate';
 
 const defaultTemplateComponents: Record<string, React.FC<{ formData: FormData; templateContent?: string }>> = {
   internshipLetter: InternshipLetterTemplate,
@@ -22,6 +23,7 @@ const defaultTemplateComponents: Record<string, React.FC<{ formData: FormData; t
   hikeLetter: HikeLetterTemplate,
   relievingLetter: RelievingLetterTemplate,
   salarySlip: SalarySlipTemplate,
+  paymentReceipt: PaymentReceiptTemplate,
 };
 
 const templateOptions = [
@@ -33,6 +35,7 @@ const templateOptions = [
   { value: 'hikeLetter', label: 'Hike Letter' },
   { value: 'relievingLetter', label: 'Relieving Letter' },
   { value: 'salarySlip', label: 'Salary Slip' },
+  { value: 'paymentReceipt', label: 'Payment Receipt' },
 ];
 
 export const generateAllDocuments = async (

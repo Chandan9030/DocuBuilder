@@ -7,6 +7,7 @@ import RelievingLetterTemplate from './templates/RelievingLetterTemplate';
 import ExperienceLetter from './templates/ExperienceLetter';
 import ExitFormalityFinal from './templates/ExitFormalityFinal';
 import SalarySlipTemplate from './templates/SalarySlipTemplate';
+import PaymentReceiptTemplate from './templates/PaymentReceiptTemplate';
 
 interface TemplateProcessorProps {
   templateType: string;
@@ -27,6 +28,7 @@ const TemplateProcessor: React.FC<TemplateProcessorProps> = ({ templateType, for
     hikeLetter: HikeLetterTemplate,
     relievingLetter: RelievingLetterTemplate,
     salarySlip: SalarySlipTemplate,
+    paymentReceipt: PaymentReceiptTemplate,
   };
 
   const templateImages: Record<string, { headerImage: string; footerImage: string }> = {
