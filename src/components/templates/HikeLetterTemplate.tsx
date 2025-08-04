@@ -577,7 +577,7 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
         <HeaderSection />
         
-        <div className="p-6">
+        <div className="p-2">
           <div className="mb-6">
             <h2 className="text-lg font-bold">DAYA CONSULTANCY SERVICES PRIVATE LIMITED</h2>
             <p className="text-sm">B-19, Kousalya Bhavan, Saheed Nagar, Bhubaneswar</p>
@@ -627,12 +627,12 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
         <HeaderSection />
         
-        <div className="p-4">
-          <div className="text-right mb-12">
+        <div className="p-3">
+          <div className="text-right mb-3">
             <p className="font-bold text-lg">{date}</p>
           </div>
 
-          <div className="text-center mb-12">
+          <div className="text-center mb-4">
             <h1 className="text-2xl font-bold">ANNEXURE – I</h1>
             <h2 className="text-xl font-bold underline mt-4">GUIDELINES</h2>
           </div>
@@ -688,7 +688,7 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
             </div>
           </div>
 
-          <div className="mt-16 mb-8">
+          <div className="mt-6 mb-1">
             <p className="font-bold">{signatoryName}</p>
             <p className="text-sm">{signatoryTitle}</p>
           </div>
@@ -700,16 +700,16 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300">
         <HeaderSection />
 
-        <div className="p-8">
-          <div className="text-right mb-8">
+        <div className="p-6">
+          <div className="text-right mb-4">
             <p className="font-bold text-lg">{date}</p>
           </div>
 
-          <div className="text-center mb-8">
+          <div className="text-center mb-4">
             <h1 className="text-2xl font-bold">SALARY ANNEXURE</h1>
           </div>
 
-          <div className="mb-10">
+          <div className="mb-6">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-blue-600 text-white">
@@ -793,7 +793,7 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
             </table>
           </div>
 
-          <div className="mt-10 mb-4">
+          <div className="mt-6 mb-2">
             <div className="text-left">
               <p className="font-bold text-lg">{signatoryName}</p>
               <p className="text-sm">{signatoryTitle}</p>
