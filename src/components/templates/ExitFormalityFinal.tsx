@@ -10,7 +10,7 @@ const ExitFormalityFinal = ({ formData, templateContent }) => {
     dateOfExit = '29th/May/2024',
     signatoryName = 'Mr. Dayashankar Das',
     signatoryTitle = 'Chief Executive Officer',
-    headerImage = 'https://res.cloudinary.com/dcpoiyzqi/image/upload/v1749209085/uploads/1749209084379-1563b3f81f4be9fbc787eb359ff0f470.jpg',
+    headerImage = 'https://res.cloudinary.com/dcpoiyzqi/image/upload/v1749546738/uploads/1749546736726-91b660c5372a77bf355b2ba1fa46d02a.png',
     footerImage = 'https://res.cloudinary.com/dcpoiyzqi/image/upload/v1750245037/uploads/1750245035638-c4524c713841e6b3884c1d9e0c713722.jpg'
   } = formData || {};
 

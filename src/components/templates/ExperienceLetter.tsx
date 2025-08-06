@@ -37,10 +37,10 @@ const ExperienceCertificateTemplate: React.FC<ExperienceCertificateTemplateProps
     position = 'Employee',
     signatoryName = 'Dayashankar Das',
     signatoryTitle = 'CEO',
-    headerImage = 'https://res.cloudinary.com/dcpoiyzqi/image/upload/v1749546738/uploads/1749546736726-91b660c5372a77bf355b2ba1fa46d02a.png',
+    headerImage = 'https://res.cloudinary.com/dcpoiyzqi/image/upload/v1749209085/uploads/1749209084379-1563b3f81f4be9fbc787eb359ff0f470.jpg',
     footerImage = '',
-    experienceParagraph = 'They were conscientious and committed to their work during their tenure with us.',
-    experienceClosingStatement = 'We wish them all the best as they embark on their professional journey.',
+    experienceParagraph = 'She was conscientious and committed to her work during her tenure with us.',
+    experienceClosingStatement = 'We wish her all the best as she embarks on her next professional journey.',
   } = formData;
 
   const formattedStartDate = startDate ? formatDate(startDate) : new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });

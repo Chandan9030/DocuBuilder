@@ -605,7 +605,7 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-blue-600 text-white">
+                  <tr className="bg-blue-400 text-white">
                     <td className="border border-gray-400 p-2 font-bold">BENEFITS</td>
                     <td className="border border-gray-400 p-2"></td>
                     <td className="border border-gray-400 p-2"></td>
@@ -635,7 +635,7 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
                     <td className="border border-gray-400 p-2 text-center">{specialMonthly}</td>
                     <td className="border border-gray-400 p-2 text-center">{specialAnnual}</td>
                   </tr>
-                  <tr className="bg-blue-600 text-white">
+                  <tr className="bg-blue-400 text-white">
                     <td className="border border-gray-400 p-2 font-bold">Total Gross Compensation</td>
                     <td className="border border-gray-400 p-2 text-center font-bold">{grossMonthly}</td>
                     <td className="border border-gray-400 p-2 text-center font-bold">{grossAnnual}</td>
@@ -645,7 +645,7 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
                     <td className="border border-gray-400 p-2"></td>
                     <td className="border border-gray-400 p-2"></td>
                   </tr>
-                  <tr className="bg-blue-600 text-white">
+                  <tr className="bg-blue-400 text-white">
                     <td className="border border-gray-400 p-2 font-bold">Year End Bonus & Retirals</td>
                     <td className="border border-gray-400 p-2"></td>
                     <td className="border border-gray-400 p-2"></td>
@@ -655,12 +655,12 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
                     <td className="border border-gray-400 p-2"></td>
                     <td className="border border-gray-400 p-2"></td>
                   </tr>
-                  <tr className="bg-blue-600 text-white">
+                  <tr className="bg-blue-400 text-white">
                     <td className="border border-gray-400 p-2 font-bold">Total Fixed Compensation</td>
                     <td className="border border-gray-400 p-2"></td>
                     <td className="border border-gray-400 p-2"></td>
                   </tr>
-                  <tr className="bg-blue-600 text-white">
+                  <tr className="bg-blue-400 text-white">
                     <td className="border border-gray-400 p-2 font-bold">Variable Pay**</td>
                     <td className="border border-gray-400 p-2"></td>
                     <td className="border border-gray-400 p-2"></td>
@@ -670,7 +670,7 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
                     <td className="border border-gray-400 p-2"></td>
                     <td className="border border-gray-400 p-2"></td>
                   </tr>
-                  <tr className="bg-blue-600 text-white">
+                  <tr className="bg-blue-400 text-white">
                     <td className="border border-gray-400 p-2 font-bold">TOTAL ANNUAL PACKAGE</td>
                     <td className="border border-gray-400 p-2 text-center font-bold">{grossMonthly}</td>
                     <td className="border border-gray-400 p-2 text-center font-bold">{grossAnnual}</td>
