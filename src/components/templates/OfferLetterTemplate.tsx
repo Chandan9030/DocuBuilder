@@ -7,7 +7,6 @@
 //     companyAddress = 'B-19, Saheed Nagar, Bhubaneswar-751007, Odisha',
 //     recipientTitle = 'Mr.',
 //     recipientName = 'Agni Tanmaya Behera',
-//     recipientAddress = 'Your Address',
 //     jobTitle = 'Full Stack Developer',
 //     department = 'Development',
 //     startDate = '02/05/2022',
@@ -107,13 +106,12 @@
 //       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
 //         <HeaderSection />
 
-//         <div className="p-6">
+//         <div className="p-4">
 //           <div className="space-y-4 text-sm leading-relaxed">
-//             <dl className="mb-6">
+//             <dl className="mb-4">
 //               <dt className="font-bold">Date:</dt>
 //               <dd>{formattedDate}</dd>
 //               <dt className="font-bold mt-2">{fullRecipientName}</dt>
-//               <dd>{recipientAddress}</dd>
 //             </dl>
 
 //             <div className="mb-6">
@@ -163,7 +161,7 @@
 //       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
 //         <HeaderSection />
 
-//         <div className="p-8">
+//         <div className="p-10">
 //           <div className="space-y-4 text-sm leading-relaxed">
 //             <h2 className="text-2xl font-bold mb-4 text-center">EMPLOYMENT AGREEMENT</h2>
 //             <p className="break-words">Employment Agreement between <strong>{companyName}</strong> and <strong>{fullRecipientName}</strong>.</p>
@@ -205,7 +203,7 @@
 //       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
 //         <HeaderSection />
 
-//         <div className="p-10">
+//         <div className="p-12">
 //           <div className="space-y-4 text-sm leading-relaxed">
 //             <ol className="list-decimal pl-5 space-y-2" start="6">
 //               <li className="break-words">
@@ -255,7 +253,7 @@
 //                   </tr>
 //                 </thead>
 //                 <tbody>
-//                   <tr className="bg-blue-600 text-white">
+//                   <tr className="bg-blue-400 text-white">
 //                     <td className="border border-gray-400 p-2 font-bold">BENEFITS</td>
 //                     <td className="border border-gray-400 p-2"></td>
 //                     <td className="border border-gray-400 p-2"></td>
@@ -285,7 +283,7 @@
 //                     <td className="border border-gray-400 p-2 text-center">{specialMonthly}</td>
 //                     <td className="border border-gray-400 p-2 text-center">{specialAnnual}</td>
 //                   </tr>
-//                   <tr className="bg-blue-600 text-white">
+//                   <tr className="bg-blue-400 text-white">
 //                     <td className="border border-gray-400 p-2 font-bold">Total Gross Compensation</td>
 //                     <td className="border border-gray-400 p-2 text-center font-bold">{grossMonthly}</td>
 //                     <td className="border border-gray-400 p-2 text-center font-bold">{grossAnnual}</td>
@@ -295,7 +293,7 @@
 //                     <td className="border border-gray-400 p-2"></td>
 //                     <td className="border border-gray-400 p-2"></td>
 //                   </tr>
-//                   <tr className="bg-blue-600 text-white">
+//                   <tr className="bg-blue-400 text-white">
 //                     <td className="border border-gray-400 p-2 font-bold">Year End Bonus & Retirals</td>
 //                     <td className="border border-gray-400 p-2"></td>
 //                     <td className="border border-gray-400 p-2"></td>
@@ -305,12 +303,12 @@
 //                     <td className="border border-gray-400 p-2"></td>
 //                     <td className="border border-gray-400 p-2"></td>
 //                   </tr>
-//                   <tr className="bg-blue-600 text-white">
+//                   <tr className="bg-blue-400 text-white">
 //                     <td className="border border-gray-400 p-2 font-bold">Total Fixed Compensation</td>
 //                     <td className="border border-gray-400 p-2"></td>
 //                     <td className="border border-gray-400 p-2"></td>
 //                   </tr>
-//                   <tr className="bg-blue-600 text-white">
+//                   <tr className="bg-blue-400 text-white">
 //                     <td className="border border-gray-400 p-2 font-bold">Variable Pay**</td>
 //                     <td className="border border-gray-400 p-2"></td>
 //                     <td className="border border-gray-400 p-2"></td>
@@ -320,7 +318,7 @@
 //                     <td className="border border-gray-400 p-2"></td>
 //                     <td className="border border-gray-400 p-2"></td>
 //                   </tr>
-//                   <tr className="bg-blue-600 text-white">
+//                   <tr className="bg-blue-400 text-white">
 //                     <td className="border border-gray-400 p-2 font-bold">TOTAL ANNUAL PACKAGE</td>
 //                     <td className="border border-gray-400 p-2 text-center font-bold">{grossMonthly}</td>
 //                     <td className="border border-gray-400 p-2 text-center font-bold">{grossAnnual}</td>
@@ -349,9 +347,36 @@
 
 
 
-
 import React from 'react';
-import { formatDate, formatCurrency } from '../../utils/formatters';
+import { formatCurrency } from '../../utils/formatters';
+
+// Custom date formatter function
+const formatCustomDate = (dateString) => {
+  if (!dateString) return 'Your Date';
+  
+  const date = new Date(dateString);
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  
+  // Add ordinal suffix (st, nd, rd, th)
+  const getOrdinalSuffix = (day) => {
+    if (day >= 11 && day <= 13) return 'th';
+    switch (day % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
+  
+  return `${month} ${day}${getOrdinalSuffix(day)}, ${year}`;
+};
 
 const OfferLetterTemplate = ({ formData, templateContent }) => {
   const {
@@ -393,8 +418,9 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
   const medicalAnnual = (parseFloat(basicSalaryAnnual) * 0.3).toFixed(2);
   const specialAnnual = (grossAnnual - (parseFloat(basicSalaryAnnual) * (1 + 0.5 + 0.2 + 0.3))).toFixed(2);
 
-  const formattedStartDate = startDate ? formatDate(startDate) : 'Your Start Date';
-  const formattedDate = startDate ? formatDate(startDate) : 'Your Date';
+  // Use custom date formatter instead of formatDate
+  const formattedStartDate = startDate ? formatCustomDate(startDate) : 'Your Start Date';
+  const formattedDate = startDate ? formatCustomDate(startDate) : 'Your Date';
   const firstName = recipientName ? recipientName.split(' ')[0] : '';
   const formattedGreeting = firstName ? `Dear ${firstName},` : greeting;
 
