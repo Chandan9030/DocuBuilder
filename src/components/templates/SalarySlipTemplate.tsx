@@ -160,7 +160,7 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
         <img
           src={headerImage}
           alt="Company Logo"
-          className="mx-auto h-32 mb-4 max-w-full object-contain"
+          className="mx-auto h-30 mb-4 max-w-full object-contain"
           onError={(e) => {
             console.error('Header image failed to load:', headerImage);
             e.currentTarget.style.display = 'none';
@@ -171,7 +171,7 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
           }}
         />
       ) : (
-        <div className="mx-auto h-24 mb-4 flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">
+        <div className="mx-auto h-22 mb-4 flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">
           Company Logo
         </div>
       )}
@@ -190,7 +190,7 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
     <div className="bg-white min-h-[900px] w-full max-w-[800px] mx-auto font-sans relative border-2 border-black">
       <HeaderSection />
 
-      <div className="p-6">
+      <div className="p-4">
         <div className="text-center mb-6">
           <p className="text-sm text-gray-600">Website: www.dayacs.com</p>
           <p className="text-sm"><strong>Address:</strong> -B-19, Saheed Nagar, Bhubaneswar-751007</p>

@@ -55,14 +55,14 @@
 //         <img
 //           src={headerImage}
 //           alt="Company Logo"
-//           className="mx-auto h-30 mb-4 max-w-full object-contain"
+//           className="mx-auto h-30 mb-4 w-[636px] object-contain"
 //           onError={(e) => {
 //             console.error('Header image failed to load:', headerImage);
 //             e.currentTarget.style.display = 'none';
 //           }}
 //         />
 //       ) : (
-//         <div className="mx-auto h-24 mb-4 flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">
+//         <div className="mx-auto h-24 mb-4 w-[636px] flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">
 //           Company Logo
 //         </div>
 //       )}
@@ -75,15 +75,15 @@
 //         <img
 //           src={footerImage}
 //           alt="Company Address"
-//           className="mx-auto h-22 max-w-full object-contain"
+//           className="mx-auto h-24 w-[636px] object-contain"
 //           onError={(e) => {
 //             console.error('Footer image failed to load:', footerImage);
 //             e.currentTarget.style.display = 'none';
-//             e.currentTarget.parentElement.innerHTML = '<div className="mx-auto h-20 mb-4 flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">Failed to load footer image</div>';
+//             e.currentTarget.parentElement.innerHTML = '<div className="mx-auto h-20 mb-4 w-[636px] flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">Failed to load footer image</div>';
 //           }}
 //         />
 //       ) : (
-//         <div className="mx-auto h-24 mb-4 flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">
+//         <div className="mx-auto h-24 mb-4 w-[636px] flex items-center justify-center border-2 border-dashed border-gray-300 text-gray-500 text-sm">
 //           Company Address (No Footer Image)
 //         </div>
 //       )}
@@ -99,7 +99,7 @@
 //   }
 
 //   return (
-//     <div className="bg-white min-h-[900px] w-full max-w-[900px] mx-auto p-8 font-sans flex flex-col">
+//     <div className="bg-white min-h-[900px] w-full max-w-[700px] mx-auto p-8 font-[Times_New_Roman] flex flex-col">
 //       <HeaderSection />
 
 //       <div className="flex justify-between mb-8">
@@ -191,9 +191,28 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({ formData, tem
     certificateDescription = 'He has been found to be demonstrating exceptional dedication, enthusiasm, and professionalism in his duties and contributions to various projects and initiatives within the company. We wish all the best in his future endeavors.'
   } = formData;
 
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-US', options);
+  const getOrdinalSuffix = (day: number): string => {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
+
+  const formatDate = (dateString: string): string => {
+    const dateObj = new Date(dateString);
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth();
+    const year = dateObj.getFullYear();
+
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    const monthName = months[month];
+    
+    return `${monthName} ${day}${getOrdinalSuffix(day)}, ${year}`;
   };
 
   const fullRecipientName = recipientTitle ? `${recipientTitle} ${recipientName}` : recipientName;

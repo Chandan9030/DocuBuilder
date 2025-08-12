@@ -25,8 +25,6 @@
 //     issueDate,
 //   } = formData;
 
-//   // Second, Third, Fourth, Fifth, Closing Statement
-
 //   const [imageLoaded, setImageLoaded] = useState(false);
 //   const [imageError, setImageError] = useState(false);
 //   const formattedStartDate = startDate ? formatDate(startDate) : '[Start Date]';
@@ -35,40 +33,40 @@
 
 //   const calculateDuration = (startDateStr, endDateStr) => {
 //     if (!startDateStr || !endDateStr) return '60';
-    
+
 //     let startDateObj, endDateObj;
-    
+
 //     if (startDateStr.includes('/')) {
 //       const [day, month, year] = startDateStr.split('/');
 //       startDateObj = new Date(year, month - 1, day);
 //     } else {
 //       startDateObj = new Date(startDateStr);
 //     }
-    
+
 //     if (endDateStr.includes('/')) {
 //       const [day, month, year] = endDateStr.split('/');
 //       endDateObj = new Date(year, month - 1, day);
 //     } else {
 //       endDateObj = new Date(endDateStr);
 //     }
-    
+
 //     const diffTime = Math.abs(endDateObj - startDateObj);
 //     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
 //     return diffDays.toString();
 //   };
 
 //   const formatIndianDate = (dateStr) => {
 //     if (!dateStr) return '[Date]';
-    
+
 //     if (dateStr.includes('/')) {
 //       const [day, month, year] = dateStr.split('/');
-//       const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-//                      'July', 'August', 'September', 'October', 'November', 'December'];
+//       const months = ['January', 'February', 'March', 'April', 'May', 'June',
+//         'July', 'August', 'September', 'October', 'November', 'December'];
 //       const monthName = months[parseInt(month) - 1];
 //       return `${parseInt(day)}${getOrdinalSuffix(parseInt(day))} ${monthName} ${year}`;
 //     }
-    
+
 //     return formatDate(dateStr);
 //   };
 
@@ -144,26 +142,20 @@
 
 //   if (templateContent) {
 //     return (
-//       <div className="font-sans leading-relaxed max-w-4xl mx-auto bg-white min-h-[1000px] relative pb-24">      
-//         <div dangerouslySetInnerHTML={{ __html: templateContent }} />      
+//       <div className="font-[Times_New_Roman] leading-relaxed max-w-4xl mx-auto bg-white min-h-[1000px] relative pb-24">
+//         <div dangerouslySetInnerHTML={{ __html: templateContent }} />
 //       </div>
 //     );
 //   }
 
 //   return (
-//     <div className="font-sans leading-relaxed max-w-4xl mx-auto bg-white min-h-[1000px] relative pb-24">
+//     <div className="font-[Times_New_Roman] leading-relaxed max-w-4xl mx-auto bg-white min-h-[1000px] relative pb-24">
 //       <HeaderSection />
 
 //       <div className="mb-8 px-8">
 //         <p><strong>Date:</strong> {displayIssueDate}</p>
 //         <p><strong>Start Date:</strong> {formatIndianDate(startDate)}</p>
-//       </div>
-
-//       <div className="mb-8 px-8">
-//         <p>
-//           <strong>{recipientTitle} {recipientName}</strong>
-//         </p>
-//         {/* <p>{recipientAddress}</p> */}
+//         <p><strong>{recipientTitle} {recipientName}</strong></p>
 //       </div>
 
 //       <div className="mb-8 px-8">
@@ -172,7 +164,7 @@
 
 //       <div className="mb-8 px-8 space-y-4">
 //         <p>Dear {getFirstName(recipientName)},</p>
-        
+
 //         <p>
 //           We are pleased to extend to you this offer of internship at <strong>Daya Consultancy Services (OPC) Pvt. Ltd.</strong> As <strong>{internPosition}</strong> for <strong>{internshipDuration} days</strong> if you accept this offer, you will begin your internship with the Company on <strong>{formatIndianDate(startDate)}</strong>. This is a scope for you to learn new age technology and update yourself with industry standards. You will receive no type of payment per month. As an intern you will receive "temporary employment" status. As an intern you will receive "temporary employment" status. As a temporary employee, you will not receive any of the employee benefits that regular Company employees receive including but not limited to, health insurance, vacation or sick pay, or paid holidays. During your internship if you are unable to attend the office for any reason then your internship duration will be extended. Your internship is expected to end on <strong>{formatIndianDate(endDate)}</strong>. However, your internship with the Company is "at-will," which means that either you or the Company may terminate your internship at any time, with or without cause and with or without notice. If your performance is seen to be appreciable then you may receive incentive.
 //         </p>
@@ -180,7 +172,7 @@
 //         {additionalDetails && (
 //           <p>{additionalDetails}</p>
 //         )}
-        
+
 //         <p>
 //           {internshipThirdStatement}
 //         </p>
@@ -192,13 +184,12 @@
 //         <p>
 //           {internshipClosingStatement}
 //         </p>
-        
-//         <p>Sincerely,</p>
+
+//         <p>Yours Sincerely,</p>
 //       </div>
 
 //       <div className="px-8">
-//         <p className="font-semibold">{signatoryName}</p>
-//         <p>{signatoryTitle}</p>
+//         <p className="font-semibold">Date: {displayIssueDate}</p>
 //       </div>
 
 //       <br />
@@ -208,7 +199,6 @@
 // };
 
 // export default InternshipLetterTemplate;
-
 
 
 
@@ -247,41 +237,50 @@ const InternshipLetterTemplate = ({ formData, templateContent }) => {
 
   const calculateDuration = (startDateStr, endDateStr) => {
     if (!startDateStr || !endDateStr) return '60';
-    
+
     let startDateObj, endDateObj;
-    
+
     if (startDateStr.includes('/')) {
       const [day, month, year] = startDateStr.split('/');
       startDateObj = new Date(year, month - 1, day);
     } else {
       startDateObj = new Date(startDateStr);
     }
-    
+
     if (endDateStr.includes('/')) {
       const [day, month, year] = endDateStr.split('/');
       endDateObj = new Date(year, month - 1, day);
     } else {
       endDateObj = new Date(endDateStr);
     }
-    
+
     const diffTime = Math.abs(endDateObj - startDateObj);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     return diffDays.toString();
   };
 
   const formatIndianDate = (dateStr) => {
     if (!dateStr) return '[Date]';
-    
+
+    let day, month, year;
+
     if (dateStr.includes('/')) {
-      const [day, month, year] = dateStr.split('/');
-      const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-                     'July', 'August', 'September', 'October', 'November', 'December'];
-      const monthName = months[parseInt(month) - 1];
-      return `${parseInt(day)}${getOrdinalSuffix(parseInt(day))} ${monthName} ${year}`;
+      [day, month, year] = dateStr.split('/');
+    } else {
+      const dateObj = new Date(dateStr);
+      day = dateObj.getDate();
+      month = dateObj.getMonth() + 1;
+      year = dateObj.getFullYear();
     }
+
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
     
-    return formatDate(dateStr);
+    const dayNum = parseInt(day);
+    const monthName = months[parseInt(month) - 1];
+    
+    return `${monthName} ${dayNum}${getOrdinalSuffix(dayNum)}, ${year}`;
   };
 
   const getOrdinalSuffix = (day) => {
@@ -356,8 +355,8 @@ const InternshipLetterTemplate = ({ formData, templateContent }) => {
 
   if (templateContent) {
     return (
-      <div className="font-[Times_New_Roman] leading-relaxed max-w-4xl mx-auto bg-white min-h-[1000px] relative pb-24">      
-        <div dangerouslySetInnerHTML={{ __html: templateContent }} />      
+      <div className="font-[Times_New_Roman] leading-relaxed max-w-4xl mx-auto bg-white min-h-[1000px] relative pb-24">
+        <div dangerouslySetInnerHTML={{ __html: templateContent }} />
       </div>
     );
   }
@@ -367,7 +366,7 @@ const InternshipLetterTemplate = ({ formData, templateContent }) => {
       <HeaderSection />
 
       <div className="mb-8 px-8">
-        <p><strong>Date:</strong> {displayIssueDate}</p>
+        <p><strong>Date:</strong> {formatIndianDate(issueDate || new Date().toISOString().split('T')[0])}</p>
         <p><strong>Start Date:</strong> {formatIndianDate(startDate)}</p>
         <p><strong>{recipientTitle} {recipientName}</strong></p>
       </div>
@@ -378,7 +377,7 @@ const InternshipLetterTemplate = ({ formData, templateContent }) => {
 
       <div className="mb-8 px-8 space-y-4">
         <p>Dear {getFirstName(recipientName)},</p>
-        
+
         <p>
           We are pleased to extend to you this offer of internship at <strong>Daya Consultancy Services (OPC) Pvt. Ltd.</strong> As <strong>{internPosition}</strong> for <strong>{internshipDuration} days</strong> if you accept this offer, you will begin your internship with the Company on <strong>{formatIndianDate(startDate)}</strong>. This is a scope for you to learn new age technology and update yourself with industry standards. You will receive no type of payment per month. As an intern you will receive "temporary employment" status. As an intern you will receive "temporary employment" status. As a temporary employee, you will not receive any of the employee benefits that regular Company employees receive including but not limited to, health insurance, vacation or sick pay, or paid holidays. During your internship if you are unable to attend the office for any reason then your internship duration will be extended. Your internship is expected to end on <strong>{formatIndianDate(endDate)}</strong>. However, your internship with the Company is "at-will," which means that either you or the Company may terminate your internship at any time, with or without cause and with or without notice. If your performance is seen to be appreciable then you may receive incentive.
         </p>
@@ -386,7 +385,7 @@ const InternshipLetterTemplate = ({ formData, templateContent }) => {
         {additionalDetails && (
           <p>{additionalDetails}</p>
         )}
-        
+
         <p>
           {internshipThirdStatement}
         </p>
@@ -398,13 +397,12 @@ const InternshipLetterTemplate = ({ formData, templateContent }) => {
         <p>
           {internshipClosingStatement}
         </p>
-        
-        <p>Sincerely,</p>
+
+        <p>Yours Sincerely,</p>
       </div>
 
       <div className="px-8">
-        <p className="font-semibold">{signatoryName}</p>
-        <p>{signatoryTitle}</p>
+        <p className="font-semibold">Date: {formatIndianDate(issueDate || new Date().toISOString().split('T')[0])}</p>
       </div>
 
       <br />

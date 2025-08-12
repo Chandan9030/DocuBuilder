@@ -458,9 +458,9 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
         <HeaderSection />
 
-        <div className="p-6">
+        <div className="p-4">
           <div className="space-y-4 text-sm leading-relaxed">
-            <dl className="mb-6">
+            <dl className="mb-4">
               <dt className="font-bold">Date:</dt>
               <dd>{formattedDate}</dd>
               <dt className="font-bold mt-2">{fullRecipientName}</dt>
@@ -513,7 +513,7 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
         <HeaderSection />
 
-        <div className="p-8">
+        <div className="p-10">
           <div className="space-y-4 text-sm leading-relaxed">
             <h2 className="text-2xl font-bold mb-4 text-center">EMPLOYMENT AGREEMENT</h2>
             <p className="break-words">Employment Agreement between <strong>{companyName}</strong> and <strong>{fullRecipientName}</strong>.</p>
@@ -555,7 +555,7 @@ const OfferLetterTemplate = ({ formData, templateContent }) => {
       <div className="pdf-page bg-white min-h-[900px] w-full border border-gray-300 page-break-after">
         <HeaderSection />
 
-        <div className="p-10">
+        <div className="p-12">
           <div className="space-y-4 text-sm leading-relaxed">
             <ol className="list-decimal pl-5 space-y-2" start="6">
               <li className="break-words">
