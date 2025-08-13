@@ -1,5 +1,52 @@
 import React, { useState, useEffect } from 'react';
 
+// Function to add ordinal suffix to day
+const getOrdinalSuffix = (day: number): string => {
+  if (day >= 11 && day <= 13) {
+    return 'th';
+  }
+  switch (day % 10) {
+    case 1: return 'st';
+    case 2: return 'nd';
+    case 3: return 'rd';
+    default: return 'th';
+  }
+};
+
+// Function to format date to "Month Day[st/nd/rd/th], Year"
+const formatDateToOrdinal = (dateString: string): string => {
+  if (!dateString) return '';
+  
+  // Handle different date formats
+  let date;
+  if (dateString.includes('/')) {
+    // Handle formats like "29th/May/2024" or "29/May/2024"
+    const parts = dateString.replace(/st|nd|rd|th/g, '').split('/');
+    if (parts.length === 3) {
+      // Assuming format: day/month/year
+      const day = parseInt(parts[0]);
+      const month = parts[1];
+      const year = parseInt(parts[2]);
+      date = new Date(`${month} ${day}, ${year}`);
+    } else {
+      date = new Date(dateString);
+    }
+  } else {
+    date = new Date(dateString);
+  }
+  
+  if (isNaN(date.getTime())) {
+    return dateString; // Return original if parsing fails
+  }
+  
+  const month = date.toLocaleDateString('en-US', { month: 'long' });
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const ordinalSuffix = getOrdinalSuffix(day);
+  
+  return `${month} ${day}${ordinalSuffix}, ${year}`;
+};
+
 const ExitFormalityFinal = ({ formData, templateContent }) => {
   const {
     companyName = 'DAYA Consultancy Services',
@@ -19,12 +66,15 @@ const ExitFormalityFinal = ({ formData, templateContent }) => {
   const [footerImageLoaded, setFooterImageLoaded] = useState(false);
   const [footerImageError, setFooterImageError] = useState(false);
 
+  // Format the exit date
+  const formattedDateOfExit = formatDateToOrdinal(dateOfExit);
+
   useEffect(() => {
     console.log('ExitFormalityFinal formData:', {
       employeeName,
       employeeId,
       departmentAndPositionName,
-      dateOfExit,
+      dateOfExit: formattedDateOfExit,
       companyName,
       companySubtitle,
       signatoryName,
@@ -32,7 +82,7 @@ const ExitFormalityFinal = ({ formData, templateContent }) => {
       headerImage,
       footerImage
     });
-  }, [formData]);
+  }, [formData, formattedDateOfExit]);
 
   const HeaderSection = () => (
     <div className="text-center mb-6">
@@ -113,7 +163,7 @@ const ExitFormalityFinal = ({ formData, templateContent }) => {
         </div>
         <div>
           <span className="font-bold">Date of Exit: </span>
-          <span>{dateOfExit}</span>
+          <span>{formattedDateOfExit}</span>
         </div>
       </div>
 

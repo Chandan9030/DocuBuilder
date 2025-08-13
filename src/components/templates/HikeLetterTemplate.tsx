@@ -18,6 +18,37 @@ type HikeLetterTemplateProps = {
   templateContent?: string;
 };
 
+// Function to add ordinal suffix to day
+const getOrdinalSuffix = (day: number): string => {
+  if (day >= 11 && day <= 13) {
+    return 'th';
+  }
+  switch (day % 10) {
+    case 1: return 'st';
+    case 2: return 'nd';
+    case 3: return 'rd';
+    default: return 'th';
+  }
+};
+
+// Function to format date to "Month Day[st/nd/rd/th], Year"
+const formatDateToOrdinal = (dateString: string): string => {
+  if (!dateString) return '';
+  
+  const date = new Date(dateString);
+  
+  if (isNaN(date.getTime())) {
+    return dateString; // Return original if parsing fails
+  }
+  
+  const month = date.toLocaleDateString('en-US', { month: 'long' });
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const ordinalSuffix = getOrdinalSuffix(day);
+  
+  return `${month} ${day}${ordinalSuffix}, ${year}`;
+};
+
 const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} as HikeLetterFormData, templateContent }) => {
   const {
     recipientTitle = 'Ms.',
@@ -36,6 +67,9 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
   const [headerImageError, setHeaderImageError] = useState(false);
   const [footerImageLoaded, setFooterImageLoaded] = useState(false);
   const [footerImageError, setFooterImageError] = useState(false);
+
+  // Format the date
+  const formattedDate = formatDateToOrdinal(date);
 
   const fullRecipientName = recipientTitle ? `${recipientTitle} ${recipientName}` : recipientName;
   const grossMonthly = parseFloat(salary) || (parseFloat(ctc) / 12) || 17000;
@@ -179,7 +213,7 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
           </div>
 
           <div className="text-right mb-6">
-            <p className="font-bold text-lg">{date}</p>
+            <p className="font-bold text-lg">{formattedDate}</p>
           </div>
 
           <div className="mb-6">
@@ -189,7 +223,7 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
 
           <div className="mb-8 space-y-4">
             <p>Dear {recipientName.split(' ')[0]},</p>
-            <p>We are pleased to inform you, that your compensation is being revised effective {date}.</p>
+            <p>We are pleased to inform you, that your compensation is being revised effective {formattedDate}.</p>
             <p>A break-up of your revised compensation is detailed in the salary annexure.</p>
             <p>We sincerely appreciate your contribution to the organization and look forward to the same in the future.</p>
             <p>Please further note that you shall continue to be bound by all Daya Consultancy Policies.</p>
@@ -222,7 +256,7 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
         
         <div className="p-6">
           <div className="text-right mb-3">
-            <p className="font-bold text-lg">{date}</p>
+            <p className="font-bold text-lg">{formattedDate}</p>
           </div>
 
           <div className="text-center mb-4">
@@ -295,7 +329,7 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
 
         <div className="p-6">
           <div className="text-right mb-4">
-            <p className="font-bold text-lg">{date}</p>
+            <p className="font-bold text-lg">{formattedDate}</p>
           </div>
 
           <div className="text-center mb-4">

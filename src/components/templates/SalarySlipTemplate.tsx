@@ -1,6 +1,4 @@
-import { format } from 'path';
 import React, { useState } from 'react';
-import { formatDate } from '../../utils/formatters';
 
 type SalarySlipFormData = {
   companyName?: string;
@@ -31,6 +29,45 @@ interface SalarySlipTemplateProps {
   formData?: SalarySlipFormData;
   templateContent?: string;
 }
+
+// Function to add ordinal suffix to day
+const getOrdinalSuffix = (day: number): string => {
+  if (day >= 11 && day <= 13) {
+    return 'th';
+  }
+  switch (day % 10) {
+    case 1: return 'st';
+    case 2: return 'nd';
+    case 3: return 'rd';
+    default: return 'th';
+  }
+};
+
+// Function to format date to "Month Day[st/nd/rd/th], Year"
+const formatDateToOrdinal = (dateString: string): string => {
+  if (!dateString) return '';
+  
+  // Handle different date formats
+  let date;
+  if (dateString.includes(',')) {
+    // Handle formats like "2nd May, 2022"
+    const cleanedDate = dateString.replace(/st|nd|rd|th/g, '');
+    date = new Date(cleanedDate);
+  } else {
+    date = new Date(dateString);
+  }
+  
+  if (isNaN(date.getTime())) {
+    return dateString; // Return original if parsing fails
+  }
+  
+  const month = date.toLocaleDateString('en-US', { month: 'long' });
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const ordinalSuffix = getOrdinalSuffix(day);
+  
+  return `${month} ${day}${ordinalSuffix}, ${year}`;
+};
 
 const defaultFormData: Required<SalarySlipFormData> = {
   companyName: 'DAYA Consultancy Services',
@@ -63,7 +100,6 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
     employeeName = defaultFormData.employeeName,
     employeeId = defaultFormData.employeeId,
     designation = defaultFormData.designation,
-    doj = formData.startDate ? formatDate(formData.startDate) : defaultFormData.doj,
     location = defaultFormData.location,
     paymentMode = defaultFormData.paymentMode,
     monthYear = defaultFormData.monthYear,
@@ -80,6 +116,9 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
     deductionAllowance = defaultFormData.deductionAllowance,
     headerImage = defaultFormData.headerImage
   } = formData;
+
+  // Format dates using ordinal format
+  const formattedDoj = formatDateToOrdinal(formData.startDate || formData.doj || defaultFormData.doj);
 
   const [headerImageLoaded, setHeaderImageLoaded] = useState(false);
   const [headerImageError, setHeaderImageError] = useState(false);
@@ -209,7 +248,7 @@ const SalarySlipTemplate: React.FC<SalarySlipTemplateProps> = ({ formData = {} a
                 <div><strong>Designation</strong></div>
                 <div>: {designation}</div>
                 <div><strong>DOJ</strong></div>
-                <div>: {doj}</div>
+                <div>: {formattedDoj}</div>
                 <div><strong>Location</strong></div>
                 <div>: {location}</div>
                 <div><strong>Payment Mode</strong></div>
