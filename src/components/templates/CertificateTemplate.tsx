@@ -209,9 +209,9 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({ formData, tem
 
     const months = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'];
-    
+
     const monthName = months[month];
-    
+
     return `${monthName} ${day}${getOrdinalSuffix(day)}, ${year}`;
   };
 
@@ -281,7 +281,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({ formData, tem
 
       <div className="flex-grow text-justify leading-relaxed">
         <p className="mb-4">
-          This is to certify that <span className="font-bold">{fullRecipientName}</span> has successfully completed an internship program of <span className="font-bold">{internshipDuration}</span> as a <span className="font-bold">{certificateTitle}</span> at <span className="font-bold">{}</span> from <span className="font-bold">{formatDate(startDate)}</span> to <span className="font-bold">{formatDate(endDate)}</span> under the guidance of <span className="font-bold">{mentorName}</span>.
+          This is to certify that <span className="font-bold">{fullRecipientName}</span> has successfully completed an internship program of <span className="font-bold">{internshipDuration}</span> as a <span className="font-bold">{certificateTitle}</span> at <span className="font-bold">{ }</span> from <span className="font-bold">{formatDate(startDate)}</span> to <span className="font-bold">{formatDate(endDate)}</span> under the guidance of <span className="font-bold">{mentorName}</span>.
         </p>
 
         <p className="mb-8">
@@ -292,12 +292,12 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({ formData, tem
       <div className="mt-8">
         <div className="flex justify-end">
           <div className="text-center">
-            <div className="w-24 h-24 border-2 border-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <div className="text-center">
-                <div className="text-xs text-blue-600 font-semibold">DAYA</div>
-                <div className="text-xs text-blue-600">CONSULTANCY</div>
-                <div className="text-xs text-blue-600">SERVICES</div>
-              </div>
+            <div className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+              <img
+                src="/public/Exit Formality_Final_S.jpg"   // yaha apni stamp image ka path dalna
+                alt="Stamp"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="border-t-2 border-black w-48 mb-1"></div>
             <p className="font-semibold">({signatoryName})</p>
