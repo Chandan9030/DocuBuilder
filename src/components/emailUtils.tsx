@@ -224,7 +224,7 @@ export async function sendDocumentsByEmail(
         backgroundColor: '#ffffff',
         padding: '20mm',
         boxSizing: 'border-box',
-        fontSize: '6.8pt',
+        fontSize: '8.5pt',
         lineHeight: '1.4',
         fontFamily: '"Times New Roman", Times, serif',
         color: '#000000',

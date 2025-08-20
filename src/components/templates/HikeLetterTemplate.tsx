@@ -58,7 +58,7 @@ const HikeLetterTemplate: React.FC<HikeLetterTemplateProps> = ({ formData = {} a
     ctc = '324000',
     date = 'June 1, 2023',
     signatoryName = 'Daya Shankar Das',
-    signatoryTitle = 'Director – DAYA CONSULTANCY SERVICES',
+    signatoryTitle = 'Director - DAYA CONSULTANCY SERVICES',
     headerImage = 'https://res.cloudinary.com/dcpoiyzqi/image/upload/v1749209085/uploads/1749209084379-1563b3f81f4be9fbc787eb359ff0f470.jpg',
     footerImage = 'https://res.cloudinary.com/dcpoiyzqi/image/upload/v1750245037/uploads/1750245035638-c4524c713841e6b3884c1d9e0c713722.jpg'
   } = formData;
